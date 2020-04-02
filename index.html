@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <title>Homotronics - Online Shop</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <main>
+          <header>
+            <nav>
+              <a href="#">
+                <p class="logo">Homotronics</p>
+                <p class="logo_descript">Online Shop</p>
+              </a>
+              <button class="btn btn-cart" @click="viewCart">
+                Cart <span>{{this.cart.length}}</span>
+              </button>
+            </nav>
+            <div class="slider"></div>
+          </header>
+          <div class="catalog">
+            <h1>Catalog</h1>
+            <div class="items">
+              <div class="item" v-for="item in items">
+                <img :src="'../img/' + item.id + '.jpeg'" alt="" />
+                <h3>{{item.title}}</h3>
+                <p class="descript">{{item.descript}}</p>
+                <p class="onstock">On stock: {{item.qty_onstore}}</p>
+                <p class="price">{{item.price}} USD</p>
+                <div class="qty-count">
+                  <button class="btn-decr" @click="decrement(item)">-</button>
+                  <div class="qty">{{item.qty}}</div>
+                  <button class="btn-incr" @click="increment(item)">+</button>
+                </div>
+                <button class="btn btn-add" @click="addToCart(item)">
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="cart" v-if="show" @click="viewCart">
+            <div class="cart-items">
+              <h2>Your cart</h2>
+              <div class="empty" v-if="this.cart.length == 0">
+                Cart is empty
+              </div>
+              <div class="cart-item" v-for="cartItem in cart">
+                <img :src="'../img/' + cartItem.id + '.jpeg'" alt="" />
+                <h4>{{cartItem.title}}</h4>
+                <div class="qty-count">
+                    <button class="btn-decr" @click="decrement(cartItem)">-</button>
+                    <div class="qty">{{cartItem.qty}}</div>
+                    <button class="btn-incr" @click="increment(cartItem)">+</button>
+                  </div>
+                <p>{{cartItem.price * cartItem.qty}} USD</p>
+                <button class="btn btn-del" @click="delFromCart(cartItem)">
+                  &times;
+                </button>
+              </div>
+              <div class="total" v-if="this.cart.length != 0">
+                Total: {{this.total}} USD
+              </div>
+              <div class="buttons" v-if="this.cart.length != 0">
+                <!-- must change behavior of order button -->
+                <button class="btn btn-order" @click="clearCart">
+                  Complete order
+                </button>
+                <button class="btn btn-clear" @click="clearCart">
+                  Clear all
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer>All rights reserved by Pavel Belkin © 2020</footer>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
