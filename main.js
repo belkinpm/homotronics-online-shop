@@ -45,11 +45,13 @@ var app = new Vue({
       if (data.qty < data.qty_onstore) {
         data.qty++;
       }
+      this.countTotal();
     },
     decrement: function(data) {
       if (data.qty > 1) {
         data.qty--;
       }
+      this.countTotal();
     },
     addToCart: function(data) {
       if (this.cart.length == 0) {
@@ -71,6 +73,7 @@ var app = new Vue({
     delFromCart: function(data) {
       this.cart.splice(this.cart.indexOf(data), 1);
       data.qty = 1;
+      this.countTotal();
     },
     viewCart: function(event) {
       if (this.show == true) {
@@ -85,7 +88,17 @@ var app = new Vue({
       this.items.forEach(item => (item.qty = 1));
     },
     countTotal: function() {
-      console.log(this.total);
+      let result = [0];
+
+      this.cart.forEach((item) => {
+        result.push(item.qty * item.price);
+      })
+
+      result = result.reduce((sum, el) => {
+        return sum + el;
+      })
+
+      this.total = result;
     }
   }
 });
