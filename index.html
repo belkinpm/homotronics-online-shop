@@ -25,7 +25,7 @@
           <div class="catalog">
             <h1>Catalog</h1>
             <div class="items">
-              <div class="item" v-for="item in items">
+              <div class="item" v-for="item in items" :key="item.id">
                 <img :src="'../img/' + item.id + '.jpeg'" alt="" />
                 <h3>{{item.title}}</h3>
                 <p class="descript">{{item.descript}}</p>
@@ -45,26 +45,30 @@
           <div class="cart" v-if="show" @click="viewCart">
             <div class="cart-items">
               <h2>Your cart</h2>
-              <div class="empty" v-if="this.cart.length == 0">
+              <div class="empty" v-if="!this.cart.length">
                 Cart is empty
               </div>
-              <div class="cart-item" v-for="cartItem in cart">
+              <div class="cart-item" v-for="cartItem in cart" :key="cartItem.id">
                 <img :src="'../img/' + cartItem.id + '.jpeg'" alt="" />
                 <h4>{{cartItem.title}}</h4>
                 <div class="qty-count">
-                    <button class="btn-decr" @click="decrement(cartItem)">-</button>
-                    <div class="qty">{{cartItem.qty}}</div>
-                    <button class="btn-incr" @click="increment(cartItem)">+</button>
-                  </div>
+                  <button class="btn-decr" @click="decrement(cartItem)">
+                    -
+                  </button>
+                  <div class="qty">{{cartItem.qty}}</div>
+                  <button class="btn-incr" @click="increment(cartItem)">
+                    +
+                  </button>
+                </div>
                 <p>{{cartItem.price * cartItem.qty}} USD</p>
                 <button class="btn btn-del" @click="delFromCart(cartItem)">
                   &times;
                 </button>
               </div>
-              <div class="total" v-if="this.cart.length != 0">
-                Total: {{this.total}} USD
+              <div class="total" v-if="this.cart.length">
+                Total: {{countTotal}} USD
               </div>
-              <div class="buttons" v-if="this.cart.length != 0">
+              <div class="buttons" v-if="this.cart.length">
                 <!-- must change behavior of order button -->
                 <button class="btn btn-order" @click="clearCart">
                   Complete order

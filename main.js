@@ -1,4 +1,6 @@
-var app = new Vue({
+const API = 'api';
+
+const app = new Vue({
   el: '#app',
   data: {
     items: [
@@ -37,23 +39,20 @@ var app = new Vue({
       }
     ],
     cart: [],
-    show: false,
-    total: 0
+    show: false
   },
   methods: {
-    increment: function(data) {
+    increment(data) {
       if (data.qty < data.qty_onstore) {
         data.qty++;
       }
-      this.countTotal();
     },
-    decrement: function(data) {
+    decrement(data) {
       if (data.qty > 1) {
         data.qty--;
       }
-      this.countTotal();
     },
-    addToCart: function(data) {
+    addToCart(data) {
       if (this.cart.length == 0) {
         this.cart.unshift(data);
       } else {
@@ -68,14 +67,12 @@ var app = new Vue({
           this.cart.unshift(data);
         }
       }
-      this.countTotal();
     },
-    delFromCart: function(data) {
+    delFromCart(data) {
       this.cart.splice(this.cart.indexOf(data), 1);
       data.qty = 1;
-      this.countTotal();
     },
-    viewCart: function(event) {
+    viewCart(event) {
       if (this.show == true) {
         if (event.target != document.querySelector('.cart')) {
           return;
@@ -83,11 +80,13 @@ var app = new Vue({
       }
       return (this.show = !this.show);
     },
-    clearCart: function() {
+    clearCart() {
       this.cart.splice(0);
       this.items.forEach(item => (item.qty = 1));
-    },
-    countTotal: function() {
+    }
+  },
+  computed: {
+    countTotal() {
       let result = [0];
 
       this.cart.forEach((item) => {
@@ -98,7 +97,7 @@ var app = new Vue({
         return sum + el;
       })
 
-      this.total = result;
+      return result;
     }
   }
 });
