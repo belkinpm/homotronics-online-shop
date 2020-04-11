@@ -86,15 +86,23 @@ nav {
   }
 }
 
-.catalog {
-  padding: 1.5rem 0;
+.search-form {
+  text-align: right;
+
+  .btn-search {
+    padding: 0.375rem 0.375rem;
+  }
 }
 
-.items {
+.catalog {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 1rem;
+
+  h1 {
+    width: 100%;
+    padding-bottom: 1.5rem;
+  }
 }
 
 .item {
@@ -213,8 +221,8 @@ nav {
     border-radius: 0.375rem;
 
     img {
-        display: block;
-        height: 2rem;
+      display: block;
+      height: 2rem;
     }
   }
 

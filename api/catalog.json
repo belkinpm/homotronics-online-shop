@@ -4,6 +4,7 @@
     "title": "Notebook",
     "descript": "Absolutely new and the most progressive notebook in history.",
     "price": 1690,
+    "qty": 1,
     "qty_onstore": 3
   },
   {
@@ -11,6 +12,7 @@
     "title": "Mouse",
     "descript": "Wireless mouse suitable for all your devices.",
     "price": 69,
+    "qty": 1,
     "qty_onstore": 5
   },
   {
@@ -18,6 +20,7 @@
     "title": "Keyboard",
     "descript": "New wireless keybord with longlife battery.",
     "price": 299,
+    "qty": 1,
     "qty_onstore": 4
   },
   {
@@ -25,6 +28,7 @@
     "title": "TouchPad",
     "descript": "Stylish and simple wireless new generation device.",
     "price": 199,
+    "qty": 1,
     "qty_onstore": 2
   }
 ]
