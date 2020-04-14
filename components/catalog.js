@@ -17,7 +17,7 @@ Vue.component('catalog-item', {
     props: ['item'],
     template: `
       <div class="item">
-        <img :src="'../img/' + item.id + '.jpeg'" alt="" />
+        <img :src="'./img/' + item.id + '.jpeg'" alt="" />
         <h3>{{item.title}}</h3>
         <p class="descript">{{item.descript}}</p>
         <p class="onstock">On stock: {{item.qty_onstore}}</p>

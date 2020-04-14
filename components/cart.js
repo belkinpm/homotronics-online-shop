@@ -48,7 +48,7 @@ Vue.component('cart-item', {
   props: ['item'],
   template: `
     <div class="cart-item">
-      <img :src="'../img/' + item.id + '.jpeg'" alt="" />
+      <img :src="'./img/' + item.id + '.jpeg'" alt="" />
       <h4>{{item.title}}</h4>
       <item-counter :item="item" />
       <p>{{item.price * item.qty}} USD</p>
